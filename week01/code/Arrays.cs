@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public static class Arrays
 {
     /// <summary>
@@ -9,11 +12,22 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        
+        // Plan:
+        // First I need to create an empty array of doubles with the size of 'length' to hold the answers.
+        // Then I'll use a for loop that runs 'length' times.
+        // Inside the loop, I'll multiply the starting 'number' by (i + 1) to get the multiples,
+        // because the loop starts at 0 and I don't want to multiply by zero.
+        // Save each result in the array and return it at the end.
 
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+
+        return result; 
     }
 
     /// <summary>
@@ -26,8 +40,20 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        
+        // Plan:
+        // Rotating right basically means taking a chunk from the end of the list and moving it to the front.
+        // I need to figure out where to cut the list first, which is the total count minus the 'amount'.
+        // I'll grab that end piece using GetRange and save it in a temporary list.
+        // Then I have to delete that piece from the end of the original list so it's not duplicated.
+        // Finally, I'll just insert that saved piece at index 0 (the beginning) using InsertRange.
+        
+        int splitIndex = data.Count - amount;
+        
+        List<int> slice = data.GetRange(splitIndex, amount);
+        
+        data.RemoveRange(splitIndex, amount);
+        
+        data.InsertRange(0, slice);
     }
 }
