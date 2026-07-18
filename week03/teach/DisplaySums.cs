@@ -27,7 +27,28 @@
     /// in the list.
     /// </summary>
     /// <param name="numbers">array of integers</param>
-    private static void DisplaySumPairs(int[] numbers) {
-        // TODO Problem 2 - This should print pairs of numbers in the given array
+    private static void DisplaySumPairs(int[] numbers)
+{
+    var seen = new HashSet<int>();
+
+    foreach (int number in numbers)
+    {
+        int complement = 10 - number;
+
+        if (seen.Contains(complement))
+        {
+            Console.WriteLine($"{number} {complement}");
+        }
+
+        seen.Add(number);
     }
 }
+}
+
+/// How can you solve the problem using a set data structure?
+/// You can solve the problem by using a set to store the letters
+/// that have already been seen. As you iterate through the string, 
+/// check whether each letter is already in the set. If it is, return 
+/// false because a duplicate was found. Otherwise, add the letter to 
+/// the set and continue. If you finish checking all letters without 
+/// finding a duplicate, return true. This approach runs in O(n) time.

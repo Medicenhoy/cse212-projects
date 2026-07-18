@@ -15,14 +15,23 @@
     /// <returns>true if all letters are unique, otherwise false</returns>
     private static bool AreUniqueLetters(string text) {
         // TODO Problem 1 - Replace the O(n^2) algorithm to use sets and O(n) efficiency
-        for (var i = 0; i < text.Length; ++i) {
-            for (var j = 0; j < text.Length; ++j) {
-                // Don't want to compare to yourself ... that will always result in a match
-                if (i != j && text[i] == text[j])
-                    return false;
-            }
-        }
+        var seen = new HashSet<char>();
+        foreach (char letter in text)
+    {
+        if (seen.Contains(letter))
+            return false;
+
+        seen.Add(letter);
+    }
 
         return true;
     }
 }
+
+
+///How can unique letter method be written with O(n) performance using a set?
+/// You can write it with O(n) performance by using a set to keep track of the 
+/// letters you have already seen. As you go through each character once, check 
+/// if it is in the set. If it is, the letter is not unique. If it is not, add 
+/// it to the set and continue. Since set lookups and insertions are O(1) on 
+/// average, the whole algorithm runs in O(n).
