@@ -219,4 +219,4 @@ public static class Recursion
         );
     }
         // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
-        }
+}
